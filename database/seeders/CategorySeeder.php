@@ -19,41 +19,31 @@ class CategorySeeder extends Seeder
         $users=User::all();
         $categories = [
             [
-                'name' => 'Lập trình Front-End',
-                'user_id' => $users->random()->id
+                'name' => 'BackEnd',
+                'user_id' => $users->random()->id,
+                "image_path" => "https://www.asapdevelopers.com/wp-content/uploads/2020/11/featured_crossplatformvsnative_231120.jpg"
             ],
             [
-                'name' => 'Lập trình Mobile',
-                'user_id' => $users->random()->id
+                'name' => 'FrontEnd',
+                'user_id' => $users->random()->id,
+                "image_path" => "https://tkhive.com/wp-content/uploads/2021/07/TKHive_-Digital_Transformation2.webp"
             ],
             [
-                'name' => 'Lập trình Android',
-                'user_id' => $users->random()->id
+                'name' => 'Mobile',
+                'user_id' => $users->random()->id,
+                "image_path" => "https://img.freepik.com/premium-psd/smartphone-14-pro-mockup_627345-66.jpg"
             ],
             [
-                'name' => 'Thủ thuật lập trình',
-                'user_id' => $users->random()->id
+                'name' => 'Network & Sercurity',
+                'user_id' => $users->random()->id,
+                "image_path" => "https://th.bing.com/th/id/R.9c717618b89c8314fbc457a142da61c5?rik=a2%2fJ2NnswbQgfA&pid=ImgRaw&r=0"
             ],
             [
-                'name' => 'Phân tích thiết kế',
-                'user_id' => $users->random()->id
+                'name' => 'Algorithms',
+                'user_id' => $users->random()->id,
+                "image_path" => "https://onpassive.com/blog/wp-content/uploads/2021/05/Machine-Learning-768x768.jpg"
             ],
-            [
-                'name' => 'Lập trình Java',
-                'user_id' => $users->random()->id
-            ],
-            [
-                'name' => 'Lập trình C',
-                'user_id' => $users->random()->id
-            ],
-            [
-                'name' => 'Unity3D',
-                'user_id' => $users->random()->id
-            ],
-            [
-                'name' => 'Lập trình PHP',
-                'user_id' => $users->random()->id
-            ],
+          
         ];
         foreach ($categories as $category) {
             Category::updateOrCreate(['name' => $category['name']], $category);

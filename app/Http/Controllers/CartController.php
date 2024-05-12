@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Course;
+use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -11,43 +13,46 @@ class CartController extends Controller
 {
     public static function index($id)
     {
-        $user = Auth::guard('student')->user();
+        
+        $user = Student::find($id);
 
         if (!$user) {
-            return redirect()->route('login');
+            return response()->json(['error' => 'Unauthenticated'], 401);
         }
+
         $cartItems = Cart::getCartByIdUser($id);
+
         $totalPrice = Cart::getTotalPrice($cartItems);
 
-        return view('pages.client.cart', [
+        return response()->json([
             'courses' => $cartItems,
-            'total' =>  $totalPrice
-        ]);
+            'total' => $totalPrice
+        ], 200);
     }
 
-    public function addToCart($courseId)
+    public function addToCart($userId, $courseId)
     {
-        $user = Auth::guard('student')->user();
-
-        if (!$user) {
-            return redirect()->route('login');
+        try {
+            $course=Course::find($courseId);
+            Cart::addToCart($userId, $courseId);
+            return response()->json(['message-addToCart' => "'$course->name' add to cart successfully"], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error-addToCart' => "Failed to add '$course->name' to cart"], 500);
         }
-        Cart::addToCart(Auth::guard('student')->user()->id, $courseId);
-
-        return redirect()->back();
     }
 
-    public function removeCartItem($courseId)
+    public function removeCartItem($userId, $courseId)
     {
-        $user = Auth::guard('student')->user();
-
-        if (!$user) {
-            return redirect()->route('login');
+        
+        try {
+            $course=Course::find($courseId);
+            Cart::where('student_id', $userId)->where('course_id', $courseId)->delete();
+            
+            return response()->json(['message-remove' => "'$course->name' removed successfully"], 200);
+        } catch (\Exception $e) {
+            return response()->json(['error-remove' => "Failed to remove '$course->name'"], 500);
         }
-        Cart::removeCartItem(Auth::guard('student')->user()->id, $courseId);
-        session()->flash('success', 'Khóa học đã được xóa khỏi giỏ hàng.');
 
-        return redirect()->back();
     }
 
     public function updateTotal(Request $request)

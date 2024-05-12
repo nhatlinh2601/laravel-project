@@ -71,7 +71,7 @@ class CourseController extends Controller
             ->get();
 
         return response()->json([
-            'course' => $course,
+            'infoCourse' => $course,
             'coursesByCategory' => $coursesByCategory,
             'lessons' => $lessons,
             'reviews' => $reviews,

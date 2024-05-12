@@ -41,7 +41,7 @@ class Cart extends Model
     {
         $totalPrice = 0;
         foreach ($cartItems as $cartItem) {
-            $totalPrice += $cartItem->sale_price;
+            $totalPrice += $cartItem->price;
         }
         return $totalPrice;
     }
