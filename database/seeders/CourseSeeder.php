@@ -23,7 +23,7 @@ class CourseSeeder extends Seeder
             [   
                 "name" => 'HTML and CSS for beginer',
                 "detail" => 'This course is designed for beginners who want to learn HTML and CSS. It covers the basics of HTML tags, CSS selectors, and styling web pages.',
-                "image_path" => 'https://th.bing.com/th/id/OIP.xYOO5mRe_psvEqn_bXz_QQAAAA?rs=1&pid=ImgDetMain',
+                "image_path" => 'https://th.bing.com/th/id/OIP.qkKvHOFmiRTyE_w3eYuhnwHaEK?w=800&h=450&rs=1&pid=ImgDetMain',
                 "price" => '10',
                 "sale_price" => '8.9',
                 "teacher_id" => $teachers->random()->id,

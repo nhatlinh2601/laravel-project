@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Course;
 use App\Models\CourseStudent;
 use Illuminate\Http\Request;
@@ -121,13 +122,24 @@ class StudentController extends Controller
     public function isMyCourses($userID, $courseID)
     {
 
-        $course = Course::find($courseID);
+       
         $myCourses = CourseStudent::where('student_id', $userID)->pluck('course_id')->toArray();
-        $coursesDetail = Course::whereIn('id', $myCourses)->get();
         $isMyCourse = in_array($courseID, $myCourses);
 
         return response()->json([
             'IsMyCourse' => $isMyCourse
+        ]);
+    }
+
+    public function isMyCart($userID, $courseID)
+    {
+
+    
+        $myCourses = Cart::where('student_id', $userID)->pluck('course_id')->toArray();
+        $isMyCart = in_array($courseID, $myCourses);
+
+        return response()->json([
+            'IsMyCart' => $isMyCart
         ]);
     }
 }

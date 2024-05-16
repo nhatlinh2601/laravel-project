@@ -21,7 +21,7 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'BackEnd',
                 'user_id' => $users->random()->id,
-                "image_path" => "https://www.asapdevelopers.com/wp-content/uploads/2020/11/featured_crossplatformvsnative_231120.jpg"
+                "image_path" => "https://image.freepik.com/free-vector/backend-technology-concept-with-glowing-lines-background_1017-28405.jpg"
             ],
             [
                 'name' => 'FrontEnd',
@@ -41,7 +41,7 @@ class CategorySeeder extends Seeder
             [
                 'name' => 'Algorithms',
                 'user_id' => $users->random()->id,
-                "image_path" => "https://onpassive.com/blog/wp-content/uploads/2021/05/Machine-Learning-768x768.jpg"
+                "image_path" => "https://static.vecteezy.com/system/resources/previews/012/991/085/original/algorithm-icon-illustration-for-graphic-and-web-design-free-vector.jpg"
             ],
           
         ];

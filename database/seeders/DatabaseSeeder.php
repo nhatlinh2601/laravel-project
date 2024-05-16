@@ -32,5 +32,7 @@ class DatabaseSeeder extends Seeder
         $this->call(CartSeeder::class);
         $this->call(RolesAndPermissionsSeeder::class);
         $this->call(NotificationSeeder::class);
+        $this->call(TestSeeder::class);
+        $this->call(QuestionSeeder::class);
     }
 }

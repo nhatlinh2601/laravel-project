@@ -7,6 +7,7 @@ use App\Http\Controllers\LessonController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\StudentAuthController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\VnpayController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -47,6 +48,9 @@ Route::get('/user/cart/delete/{userID}/{courseID}',[CartController::class,'remov
 Route::get('/user/cart/add/{userID}/{courseID}',[CartController::class,'addToCart']);
 Route::get('/user/courses/{userID}',[StudentController::class,'myCourses']);
 Route::get('/isMyCourses/{userID}/{courseID}',[StudentController::class,'isMyCourses']);
+Route::get('/isMyCart/{userID}/{courseID}',[StudentController::class,'isMyCart']);
+
+Route::get('/lesson/test/{lessonID}',[LessonController::class,'getTest']);
 
 
 Route::post('/login', [StudentController::class, 'login']);
@@ -55,6 +59,11 @@ Route::post('/user/update/{id}', [StudentController::class, 'update']);
 
 // Đăng ký
 Route::post('/register', [StudentController::class, 'register']);
+
+Route::get('/payment', [VNPayController::class, 'payment']);
+Route::post('/create-payment', [VNPayController::class, 'createPayment'])->name("createPayment");
+Route::get('/vnpay/response', [VnpayController::class, 'response'])->name('vnpay.response');
+Route::get('/lesson/status/{id}',[LessonController::class,'updateStatus']);
 
 
 
