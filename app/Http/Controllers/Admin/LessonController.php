@@ -26,6 +26,9 @@ class LessonController extends Controller
             [
                 'name' => 'required|string',
                 'detail' => 'required|string',
+                'url' => 'required|string',
+                'img_path' => 'required|string',
+                
             ],
             [
                 'required' => ':attribute bắt buộc phải nhập.',
@@ -34,6 +37,8 @@ class LessonController extends Controller
             [
                 'name' => 'Tên bài giảng',
                 'detail' => 'Mô tả',
+                'url' => 'Đường dẫn bài giảng',
+                'img_path' => 'Đường dẫn hình ảnh',
             ]
         );
 
@@ -41,20 +46,17 @@ class LessonController extends Controller
 
         $lesson->name = $request->name;
         $lesson->description = $request->detail;
+        $lesson->url = $request->url;
+        $lesson->image_path = $request->img_path;
         $lesson->course_id = $course->id;
         $lesson->save();
-        if ($request->hasFile('file')) {
-
-            $file = $request->file('file');
-            $fileName = time() . '_' . $file->getClientOriginalName();
-            $file->move(storage_path('app/public/uploads'), $fileName);
-
+        if ($request->file) {
             $documentary->name = $lesson->name;
-            $documentary->url = $fileName;
+            $documentary->url = $request->file;
             $documentary->lesson_id = $lesson->id;
             $documentary->save();
         }
-        return redirect()->route('admin.course.lesson.video.add', $lesson)->with('success', 'Thêm bài giảng thành công');
+        return redirect()->route('admin.course.lesson.list', $course)->with('success', 'Thêm bài giảng thành công');
     }
 
     public function listLesson(Course $course)
@@ -77,7 +79,8 @@ class LessonController extends Controller
     public function edit(Lesson $lesson)
     {
         $videos = $lesson->videos()->paginate(6);
-        return view('pages.backend.lesson.edit', compact('lesson', 'videos'));
+        $documentaries= $lesson->documents;
+        return view('pages.backend.lesson.edit', compact('lesson', 'documentaries'));
     }
     public function postEdit(Request $request, Lesson $lesson, Documentary $documentary)
     {

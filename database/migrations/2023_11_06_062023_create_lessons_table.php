@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('lessons', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->nullable();
-            $table->string('slug')->nullable();
+            $table->string('url')->nullable();
             $table->string('description',1000)->nullable();
             $table->float('durations')->default(0);
-            $table->integer('position')->default(0);
+            $table->string('image_path')->nullable();
             $table->integer('views')->default(0);
             $table->integer('course_id')->unsigned();
             $table->tinyInteger('status')->default(0);

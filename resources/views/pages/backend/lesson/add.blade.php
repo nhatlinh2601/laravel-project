@@ -38,18 +38,38 @@
                 </div>
 
 
-              
+                <div class="form-group col-12 ">
+                    <label for="">URL Bài giảng</label>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                        <input type="text" name="url" id="" class="form-control" value='{{ old('url') }}'>
+                    </div>
+                    @error('url')
+                        <span style="color: red">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="form-group col-12 ">
+                    <label for="">URL Hình ảnh</label>
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                        <input type="text" name="img_path" id="" class="form-control" value='{{ old('img_path') }}'>
+                    </div>
+                    @error('img_path')
+                        <span style="color: red">{{ $message }}</span>
+                    @enderror
+                </div>
 
                 <div class="form-group col-12 ">
                     <label for="">Tài liệu</label>
-                    <br>
-
-                    <input type="file" name="file">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
+                        <input type="text" name="file" id="" class="form-control" value='{{ old('file') }}'>
+                    </div>
                     @error('file')
                         <span style="color: red">{{ $message }}</span>
                     @enderror
                 </div>
-                <br>
 
                 <button style="margin: 40px 0; " class="btn btn-primary " type="submit">Thêm bài giảng</button>
             </div>

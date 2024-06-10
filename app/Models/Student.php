@@ -53,6 +53,16 @@ class Student extends Authenticatable
         return $this->belongsToMany(Course::class, 'courses_students', 'student_id', 'course_id');
     }
 
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function replyComments()
+    {
+        return $this->hasMany(ReplyComment::class);
+    }
+
 
    
 }

@@ -71,7 +71,7 @@
             <div class="col-12 col-md-6">
 
                 <div class="form-group col-12 ">
-                    <label for="">Video bài giảng</label>
+                    <label for="">Danh sách tài liệu</label>
 
                     <br>
                     <div class="row">
@@ -90,18 +90,18 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($lesson->videos as $video)
+                                            @foreach ($documentaries as $documentary)
                                                 <tr class=''>
 
                                                     <td class="sorting_1 dtr-control" tabindex="0" style="">
 
                                                         <span class="badge badge-success">
 
-                                                            {{ $video->id }}
+                                                            {{ $documentary->id }}
                                                         </span>
                                                     </td>
-                                                    <td class="">{{ $video->name }}</td>
-                                                    <td class="">{{ $video->url }}</td>
+                                                    <td class="">{{ $documentary->name }}</td>
+                                                    <td class="">{{ $documentary->url }}</td>
                                                     <td class="">
                                                         <a style="margin: 0 4px; border-radius: 4px"
                                                             href='{{ route('admin.course.lesson.video.delete', ['video' => $video]) }}'>
@@ -122,18 +122,7 @@
                                     </table>
                                 </div>
                                 <div class="container">
-                                    <div class="row">
-
-                                        <div class="col-sm-12 col-md-5">
-                                            <div class="dataTables_info" id="example1_info" role="status"
-                                                aria-live="polite">
-                                                Hiển thị
-                                                {{ $videos->firstItem() }} - {{ $videos->lastItem() }} /
-                                                {{ $videos->total() }} videos.
-                                            </div>
-                                        </div>
-                                        {!! $videos->links() !!}
-                                    </div>
+                                   
                                 </div>
                             </div>
                         </div>
@@ -166,7 +155,7 @@
 
                                 <div class="d-flex justify-content-">
                                     <div class="form-group col-12 ">
-                                        <a href="{{ route('admin.course.lesson.video.post-add', $lesson) }}">
+                                        <a href="{{ route('admin.course.lesson.video.post-add', $documentaries) }}">
                                             <button type="submit"
                                                 style="display: inline-block;
                                                         position: relative;
@@ -174,7 +163,7 @@
                                                         transform: translateX(-50%);"
                                                 type="button" class="btn btn-flat btn-success" title="Add new"><i
                                                     class="fa fa-plus"></i>
-                                                Thêm mới video</button>
+                                                Thêm mới tài liệu</button>
                                         </a>
                                     </div>
 

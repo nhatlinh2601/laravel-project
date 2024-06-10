@@ -21,7 +21,7 @@
             <div class="form-row form-add">
                 <h4 style="text-align: center;margin-bottom: 20px">Thêm video để hoàn thành cập nhật bài giảng</h4>
                 <div class="form-group col-12 ">
-                    <label for="">Video bài giảng</label>
+                    <label for="">Tài liệu bài giảng</label>
 
                     <br>
                     <div class="row">
@@ -35,24 +35,22 @@
                                                 <th>Tiêu đề</th>
                                                 <th>Đường dẫn</th>
                                                 <th>Action</th>
-
-
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($videos as $video)
+                                            @foreach ($documentaries as $documentary)
                                                 <tr class=''>
 
                                                     <td class="sorting_1 dtr-control" tabindex="0" style="">
 
                                                         <span class="badge badge-success">
 
-                                                            {{ $video->id }}
+                                                            {{ $documentary->id }}
                                                         </span>
                                                     </td>
-                                                    <td class="">{{ $video->name }}</td>
-                                                    <td class="">{{ $video->url }}</td>
-                                                    <td class="">{{ $video->url }}</td>
+                                                    <td class="">{{ $documentary->name }}</td>
+                                                    <td class="">{{ $documentary->url }}</td>
+                                                    <td class="">{{ $documentary->url }}</td>
 
                                                    
                                                 </tr>
@@ -63,15 +61,7 @@
                                     </table>
                                 </div>
                                 <div class="container">
-                                    <div class="row">
-                            
-                                        <div class="col-sm-12 col-md-5">
-                                            <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Hiển thị
-                                                {{ $videos->firstItem() }} - {{ $videos->lastItem() }} / {{ $videos->total() }} videos.
-                                            </div>
-                                        </div>
-                                        {!! $videos->links() !!}
-                                    </div>
+                                    
                                 </div>
                             </div>
                         </div>
@@ -81,7 +71,7 @@
 
 
                                 <div class="form-group col-12 ">
-                                    <label for="">Tiêu đề video</label>
+                                    <label for="">Tiêu đề tài liệu</label>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
                                         <input  name="title" class="form-control"
@@ -96,10 +86,10 @@
                                     <label for="">Đường dẫn URL</label>
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="fas fa-pencil-alt"></i></span>
-                                        <input  name="url_video" class="form-control"
-                                            value={{ old('url_video') }}>
+                                        <input  name="url" class="form-control"
+                                            value={{ old('url') }}>
                                     </div>
-                                    @error('url_video')
+                                    @error('url')
                                         <span style="color: red">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -113,7 +103,7 @@
                                             transform: translateX(-50%);"
                                             type="button" class="btn btn-flat btn-success" title="Add new"><i
                                                 class="fa fa-plus"></i>
-                                            Thêm mới video</button>
+                                            Thêm mới tai lieu</button>
                                     </div>
                                     <div class="form-group col-6 ">
                                         <a href="{{ route('admin.course.lesson.list', $lesson->course) }}">

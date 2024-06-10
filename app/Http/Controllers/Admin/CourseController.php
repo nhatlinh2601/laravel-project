@@ -54,16 +54,13 @@ class CourseController extends Controller
             ]
         );
 
-        if ($request->has('image')) {
-            $imagePath = $request->file('image')->store('img/courses', 'public');
-        }
+        
 
         $course = new Course();
         $course->name = $request->name;
         $course->detail = $request->detail;
         $course->price = $request->price;
         $course->sale_price = $request->sale_price;
-        $course->image_path = $imagePath;
         $course->category_id = $request->category;
 
         $teacher_id = Auth::user()->id;

@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Documentary extends Model
 {
     use HasFactory;
-    public function user(): BelongsTo
+    public function lesson(): BelongsTo
     {
         return $this->belongsTo(Lesson::class);
     }

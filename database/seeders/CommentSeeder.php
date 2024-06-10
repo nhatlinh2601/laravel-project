@@ -2,12 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Question;
-use App\Models\Test;
+use App\Models\Comment;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class QuestionSeeder extends Seeder
+class CommentSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,11 +15,10 @@ class QuestionSeeder extends Seeder
      */
     public function run()
     {
-        
-        Test::all()->each(function ($test) {
-        Question::factory(5)->create([
-                'test_id' => $test->id,
-            ]);
-        });
+        Comment::create([
+            'content' => "content",
+            'student_id' =>  "id_user",
+            'lesson_id'=> "id_lesson"
+        ]);
     }
 }

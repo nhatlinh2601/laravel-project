@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\LessonController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\StudentAuthController;
 use App\Http\Controllers\StudentController;
@@ -32,6 +33,9 @@ Route::prefix('courses')->name('courses.')->group(function () {
     Route::get('/recommend', [CourseController::class, 'recommendCourse']);
     Route::get('/{id}', [CourseController::class, 'show'])->name('show');
     Route::get('/lesson/{id}',[LessonController::class,'index']);
+    Route::get('/lesson/document/{id}',[LessonController::class,'getDocuments']);
+    Route::get('/lesson/comment/{id}',[LessonController::class,'getComments']);
+    Route::get('/lesson/comment/isMyComment/{userID}/{commentID}',[LessonController::class,'isMyComment']);
    
 });
 
@@ -49,12 +53,20 @@ Route::get('/user/cart/add/{userID}/{courseID}',[CartController::class,'addToCar
 Route::get('/user/courses/{userID}',[StudentController::class,'myCourses']);
 Route::get('/isMyCourses/{userID}/{courseID}',[StudentController::class,'isMyCourses']);
 Route::get('/isMyCart/{userID}/{courseID}',[StudentController::class,'isMyCart']);
+Route::get('/myCart/{userID}',[StudentController::class,'myCart']);
 
 Route::get('/lesson/test/{lessonID}',[LessonController::class,'getTest']);
 
 
 Route::post('/login', [StudentController::class, 'login']);
 Route::post('/user/update/{id}', [StudentController::class, 'update']);
+Route::post('/comment/add/{lessonId}/{userID}', [LessonController::class, 'addComment']);
+Route::post('/comment/reply/add/{commentID}/{userID}', [LessonController::class, 'addReplyComment']);
+Route::get('/comment/delete/{commentId}', [LessonController::class, 'deleteComment']);
+Route::get('/comment/reply/delete/{commentId}', [LessonController::class, 'deleteReplyComment']);
+Route::get('/comment/reply/{commentId}', [LessonController::class, 'getReplyComments']);
+Route::get('lesson/comment/reply/{lessonID}', [LessonController::class, 'getAllReplyComments']);
+Route::get('/comment/{commentId}', [LessonController::class, 'getCommentById']);
 
 
 // Đăng ký
@@ -64,6 +76,9 @@ Route::get('/payment', [VNPayController::class, 'payment']);
 Route::post('/create-payment', [VNPayController::class, 'createPayment'])->name("createPayment");
 Route::get('/vnpay/response', [VnpayController::class, 'response'])->name('vnpay.response');
 Route::get('/lesson/status/{id}',[LessonController::class,'updateStatus']);
+
+
+Route::get('/payment/{userID}/{courseID}', [OrderController::class, 'postPayment'])->name("createPayment");
 
 
 

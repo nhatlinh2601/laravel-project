@@ -142,4 +142,16 @@ class StudentController extends Controller
             'IsMyCart' => $isMyCart
         ]);
     }
+
+    public function myCart($userID)
+{
+    $myCourses = Cart::where('student_id', $userID)->get();
+    $itemCount = $myCourses->count();  // Lấy số lượng sản phẩm
+
+    return response()->json([
+        'MyCart' => $myCourses,
+        'itemCount' => $itemCount  // Trả về số lượng sản phẩm
+    ]);
+}
+
 }

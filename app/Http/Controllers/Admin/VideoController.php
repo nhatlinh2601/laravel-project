@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Documentary;
 use App\Models\Lesson;
 use App\Models\Video;
 use Illuminate\Http\Request;
@@ -14,13 +15,13 @@ class VideoController extends Controller
         $videos = $lesson->videos()->paginate(6);
         return view('pages.backend.video.add', compact('lesson', 'videos'));
     }
-    public function postAdd(Lesson $lesson, Request $request, Video $video)
+    public function postAdd(Lesson $lesson, Request $request)
     {
         $request->validate(
 
             [
                 'title' => 'required|string',
-                'url_video' => 'required|string',
+                'url' => 'required|string',
             ],
             [
                 'required' => ':attribute bắt buộc phải nhập.',
@@ -28,16 +29,16 @@ class VideoController extends Controller
             ],
             [
                 'title' => 'Tiêu đề video',
-                'url_video' => 'Đường dẫn URL',
+                'url' => 'Đường dẫn URL',
             ]
 
         );
-
-        $video->name = $request->title;
-        $video->url = $request->url_video;
-        $video->lesson_id = $lesson->id;
-        $video->save();
-        return back()->with('success', 'Thêm video thành công. ');
+        $documentary =  new Documentary();
+        $documentary->name = $request->title;
+        $documentary->url = $request->url_video;
+        $documentary->lesson_id = $lesson->id;
+        $documentary->save();
+        return back()->with('success', 'Thêm tai lieu thành công. ');
     }
 
     public function delete(Video $video)

@@ -55,5 +55,16 @@ class Lesson extends Model
         return $this->hasOne(Test::class);
        }
 
+       public function documents(): HasMany
+       {
+           return $this->hasMany(Documentary::class);
+       }
+
+       public function comments(): HasMany
+       {
+           return $this->hasMany(Comment::class);
+       }
+
+       
     
 }

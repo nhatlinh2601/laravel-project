@@ -3,23 +3,7 @@
     Khóa học online
 @endsection
 
-<?php 
-    $count =0;
-    foreach($courses as $course){
-        $count++;
-    }
 
-    axios.get('http://127.0.0.1:8000/courses/1')
-  .then(function (response) {
-    // Xử lý dữ liệu nhận được từ API ở đây
-    var course = response.data;
-    // ...
-  })
-  .catch(function (error) {
-    // Xử lý lỗi nếu có
-    console.error(error);
-  });
-?>
 
 
 

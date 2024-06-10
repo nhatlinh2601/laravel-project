@@ -29,7 +29,6 @@ class LessonSeeder extends Seeder
                         'name' => $lessonName,
                         'description' => 'Tìm hiểu cơ bản về ' . $course->name . ' - Lesson ' . $i,
                         'durations' => rand(10, 60),
-                        'position' => rand(1, 10),
                         'views' => rand(100, 1000),
                         'course_id' => $course->id
                     ]

@@ -60,7 +60,7 @@
             </div>
             <h3>Tạo mới đơn hàng</h3>
             <div class="table-responsive">
-                <form action= {{ route('createPayment') }} id="create_form" method="post">       
+                <form action="{{ route('createPayment') }}" id="create_form" method="post">    
 
                     <div class="form-group">
                         <label for="language">Loại hàng hóa </label>
